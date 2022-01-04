@@ -1,5 +1,5 @@
 import React from "react"
-import {goToPkedes} from '../../route/coordinator'
+import {goToPokedex} from '../../route/coordinator'
 import { MainContainer,HeaderHome,Card,CardImage,CardButtons, AreaCard, StyledButton1,StyledButton2} from "./Styled";
 import {MdCatchingPokemon} from 'react-icons/md'
 import {ImInfo} from 'react-icons/im'
@@ -8,7 +8,7 @@ const HomePage = () => {
     <MainContainer >
       <HeaderHome>
       Lista de Pokemons
-      <button onClick={()=>goToPkedes}>Pokedex</button>
+      <button onClick={()=>goToPokedex}>Pokedex</button>
       </HeaderHome>
      <AreaCard>
      <Card>
