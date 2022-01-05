@@ -12,7 +12,7 @@ const PokemonDetails = () => {
   const [capturedPokemon, setCapturedPokemon] = useState({})
 
   const getPokemonDetails = () => {
-    axios.get(`${BASE_URL}/pokemon/pikachu`)
+    axios.get(`${BASE_URL}/pokemon/pikachu`, {})
       .then((res) => {
         setCapturedPokemon(res.data)
         console.log(res.data)
@@ -35,37 +35,40 @@ const PokemonDetails = () => {
       <HeaderHome>
         <button onClick={goBack}>Voltar</button>
         Pokemon
-        <button onClick={goToPokedex}>ir para lista</button>
+        <button onClick={() =>goToPokedex(history)}>ir para lista</button>
 
       </HeaderHome>
       <AreaCard>
         <Card>
           <CardImage>
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="imagem do pokemon de frente" />
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/25.png" alt="imagem do pokemon de costas" />
+            <img src={capturedPokemon.sprites.front_default} alt="imagem do pokemon de frente" />
+            <img src={capturedPokemon.sprites.back_default} alt="imagem do pokemon de costas" />
           </CardImage>
           <CardInfor>
             <div>
               <h1>Poderes</h1>
-              <p>1dddddd</p>
-              <p>1dddddd</p>
-              <p>1dddddd</p>
-              <p>1dddddd</p>
-              <p>1dddddd</p>
-              <p>1dddddd</p>
+              {capturedPokemon && capturedPokemon.stats.map((stat) => {
+            return (
+              <div>
+                <span>
+                  <b>{stat.stat.name}: </b>
+                </span>
+                <span>{stat.base_stat}</span>
+              </div>
+            );
+          })}
             </div>
             <div>
               <h1>Tipo</h1>
-              <p>2dddd</p>
-              <p>2dddd</p>
+              {capturedPokemon && capturedPokemon.types.map((type) => {
+            return <div>{type.type.name}</div>;
+          })}
             </div>
             <div>
               <h1>Principais ataques</h1>
-              <p>12222</p>
-              <p>12222</p>
-              <p>12222</p>
-              <p>12222</p>
-              <p>12222</p>
+              {capturedPokemon && capturedPokemon.moves.slice(0, 10).map((move) => {
+            return <div>{move.move.name}</div>;
+          })}
             </div>
           </CardInfor>
         </Card>

@@ -114,7 +114,7 @@ background:#FBC050;
     justify-content: space-evenly;
     -webkit-box-align: center;
     align-items: center;
-    
+    margin-left: 50px;
 
     border-radius: 50px 50px 50px 50px;
     img{
