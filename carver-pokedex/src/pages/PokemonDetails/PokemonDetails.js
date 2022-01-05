@@ -14,7 +14,7 @@ const PokemonDetails = () => {
 
 
   const getPokemonDetails = () => {
-    axios.get(`${BASE_URL}/pokemon/pikachu`, {})
+    axios.get(`${BASE_URL}/pokemon/${params.name}`, {})
       .then((res) => {
         setCapturedPokemon(res.data)
         setIsLoading(false)
