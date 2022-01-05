@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { MainContainer, HeaderHome, AreaCard, Card, CardImage, CardInfor } from "./Styled"
 import { useHistory, useParams } from "react-router-dom"
-import { goToPokedex } from "../../route/coordinator"
+import { goToPokedex, goBack } from "../../route/coordinator"
 import { BASE_URL } from "../../constants/urls"
 
 
@@ -28,22 +28,18 @@ const PokemonDetails = () => {
     getPokemonDetails()
   }, [])
 
-  const goBack = () => {
-    history.goBack()
-  }
-
   return (
     <MainContainer >
       <HeaderHome>
-        <button onClick={goBack}>Voltar</button>
-        <h1>{capturedPokemon.name.toUpperCase()}</h1>
+        <button onClick={() =>goBack(history)}>Voltar</button>
+        <h1>{capturedPokemon && capturedPokemon.name.toUpperCase()}</h1>
         <button onClick={() =>goToPokedex(history)}>Ir para lista</button>
       </HeaderHome>
       {!isLoading ? (<AreaCard>
         <Card>
           <CardImage>
-            <img src={capturedPokemon.sprites.front_default} alt="imagem do pokemon de frente" />
-            <img src={capturedPokemon.sprites.back_default} alt="imagem do pokemon de costas" />
+            <img src={capturedPokemon && capturedPokemon.sprites.front_default} alt="imagem do pokemon de frente" />
+            <img src={capturedPokemon && capturedPokemon.sprites.back_default} alt="imagem do pokemon de costas" />
           </CardImage>
           <CardInfor>
             <div>
