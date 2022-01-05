@@ -10,11 +10,14 @@ const PokemonDetails = () => {
   const history = useHistory()
   const params = useParams()
   const [capturedPokemon, setCapturedPokemon] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
+
 
   const getPokemonDetails = () => {
     axios.get(`${BASE_URL}/pokemon/pikachu`, {})
       .then((res) => {
         setCapturedPokemon(res.data)
+        setIsLoading(false)
         console.log(res.data)
       })
       .catch((err) => {
@@ -31,14 +34,12 @@ const PokemonDetails = () => {
 
   return (
     <MainContainer >
-
       <HeaderHome>
         <button onClick={goBack}>Voltar</button>
-        Pokemon
-        <button onClick={() =>goToPokedex(history)}>ir para lista</button>
-
+        <h1>{capturedPokemon.name.toUpperCase()}</h1>
+        <button onClick={() =>goToPokedex(history)}>Ir para lista</button>
       </HeaderHome>
-      <AreaCard>
+      {!isLoading ? (<AreaCard>
         <Card>
           <CardImage>
             <img src={capturedPokemon.sprites.front_default} alt="imagem do pokemon de frente" />
@@ -66,13 +67,16 @@ const PokemonDetails = () => {
             </div>
             <div>
               <h1>Principais ataques</h1>
-              {capturedPokemon && capturedPokemon.moves.slice(0, 10).map((move) => {
+              {capturedPokemon && capturedPokemon.moves.slice(0, 5).map((move) => {
             return <div>{move.move.name}</div>;
           })}
             </div>
           </CardInfor>
         </Card>
       </AreaCard>
+      ) : (
+        <h2>Carregando...</h2>
+      )}
     </MainContainer>
   );
 }
