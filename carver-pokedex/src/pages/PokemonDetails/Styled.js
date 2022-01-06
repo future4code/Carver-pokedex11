@@ -121,8 +121,10 @@ background:#FBC050;
         width: 150px;
     }
 `
-export const CardInfor=styled.div` 
+export const CardInfor=styled.div`
+    
     display: flex;
+    text-align: center;
     width: 70%;
     justify-content: space-evenly;
     h1{
@@ -136,8 +138,3 @@ export const CardInfor=styled.div`
     }
 `
 
-export const PowerContainer=styled.div`
-display: flex;
-align-items: center;
-margin: 3px;
-`

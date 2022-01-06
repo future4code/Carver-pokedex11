@@ -33,14 +33,14 @@ const PokemonDetails = () => {
     <MainContainer >
       <HeaderHome>
         <button onClick={() => goBack(history)}>Voltar</button>
-        <h1>{pokemonDetails.name}</h1>
+        <h1>{pokemonDetails.name && pokemonDetails.name.toUpperCase()}</h1>
         <button onClick={() => goToPokedex(history)}>Ir para Pokedex</button>
       </HeaderHome>
       {!isLoading ? (<AreaCard key={pokemonDetails.name}>
         <Card>
           <CardImage>
-            <img src={pokemonDetails.sprites.front_default} alt="imagem do pokemon de frente" />
-            <img src={pokemonDetails.sprites.back_default} alt="imagem do pokemon de costas" />
+            <img src={pokemonDetails && pokemonDetails.sprites.front_default} alt="imagem do pokemon de frente" />
+            <img src={pokemonDetails && pokemonDetails.sprites.back_default} alt="imagem do pokemon de costas" />
           </CardImage>
           <CardInfor>
             <div>
@@ -51,10 +51,10 @@ const PokemonDetails = () => {
               <h1>Poderes</h1>
               {pokemonDetails && pokemonDetails.stats.map((stat) => {
                 return (
-                  <PowerContainer>
+                  <div>
                     <strong>{stat.stat.name}:</strong>
                     {stat.base_stat}
-                  </PowerContainer>
+                  </div>
                 );
               })}
             </div>
