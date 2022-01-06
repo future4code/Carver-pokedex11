@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { MainContainer, HeaderHome, AreaCard, Card, CardImage, CardInfor } from "./Styled"
 import { useHistory, useParams } from "react-router-dom"
-import { goToPokedex } from "../../route/coordinator"
+import { goToPokedex, goBack } from "../../route/coordinator"
 import { BASE_URL } from "../../constants/urls"
 
 
@@ -14,7 +14,7 @@ const PokemonDetails = () => {
 
 
   const getPokemonDetails = () => {
-    axios.get(`${BASE_URL}/pokemon/pikachu`, {})
+    axios.get(`${BASE_URL}/pokemon/${params.name}`, {})
       .then((res) => {
         setCapturedPokemon(res.data)
         setIsLoading(false)
@@ -28,15 +28,11 @@ const PokemonDetails = () => {
     getPokemonDetails()
   }, [])
 
-  const goBack = () => {
-    history.goBack()
-  }
-
   return (
     <MainContainer >
       <HeaderHome>
-        <button onClick={goBack}>Voltar</button>
-        <h1>{capturedPokemon.name.toUpperCase()}</h1>
+        <button onClick={() =>goBack(history)}>Voltar</button>
+        <h1>{capturedPokemon.name}</h1>
         <button onClick={() =>goToPokedex(history)}>Ir para lista</button>
       </HeaderHome>
       {!isLoading ? (<AreaCard>
@@ -52,7 +48,7 @@ const PokemonDetails = () => {
             return (
               <div>
                 <span>
-                  <b>{stat.stat.name}: </b>
+                  <strong>{stat.stat.name}: </strong>
                 </span>
                 <span>{stat.base_stat}</span>
               </div>
