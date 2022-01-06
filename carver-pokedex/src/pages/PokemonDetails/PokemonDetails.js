@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
-import { MainContainer, HeaderHome, AreaCard, Card, CardImage, CardInfor } from "./Styled"
+import { MainContainer, HeaderHome, AreaCard, Card, CardImage, CardInfor, PowerContainer } from "./Styled"
 import { useHistory, useParams } from "react-router-dom"
-import { goToPokedex } from "../../route/coordinator"
+import { goToPokedex, goBack } from "../../route/coordinator"
 import { BASE_URL } from "../../constants/urls"
 
 
 const PokemonDetails = () => {
+
   const history = useHistory()
   const params = useParams()
-  const [capturedPokemon, setCapturedPokemon] = useState({})
+  const [pokemonDetails, setPokemonDetails] = useState({})
   const [isLoading, setIsLoading] = useState(true)
 
+  useEffect(() => {
+    getPokemonDetails()
+  }, [])
 
   const getPokemonDetails = () => {
-    axios.get(`${BASE_URL}/pokemon/pikachu`, {})
+    axios.get(`${BASE_URL}${params.name}`, {})
       .then((res) => {
-        setCapturedPokemon(res.data)
+        setPokemonDetails(res.data)
         setIsLoading(false)
         console.log(res.data)
       })
@@ -24,52 +28,41 @@ const PokemonDetails = () => {
         console.log(err.response)
       })
   }
-  useEffect(() => {
-    getPokemonDetails()
-  }, [])
-
-  const goBack = () => {
-    history.goBack()
-  }
 
   return (
     <MainContainer >
       <HeaderHome>
-        <button onClick={goBack}>Voltar</button>
-        <h1>{capturedPokemon.name.toUpperCase()}</h1>
-        <button onClick={() =>goToPokedex(history)}>Ir para lista</button>
+        <button onClick={() => goBack(history)}>Voltar</button>
+        <h1>{pokemonDetails.name && pokemonDetails.name.toUpperCase()}</h1>
+        <button onClick={() => goToPokedex(history)}>Ir para Pokedex</button>
       </HeaderHome>
-      {!isLoading ? (<AreaCard>
+      {!isLoading ? (<AreaCard key={pokemonDetails.name}>
         <Card>
           <CardImage>
-            <img src={capturedPokemon.sprites.front_default} alt="imagem do pokemon de frente" />
-            <img src={capturedPokemon.sprites.back_default} alt="imagem do pokemon de costas" />
+            <img src={pokemonDetails && pokemonDetails.sprites.front_default} alt="imagem do pokemon de frente" />
+            <img src={pokemonDetails && pokemonDetails.sprites.back_default} alt="imagem do pokemon de costas" />
           </CardImage>
           <CardInfor>
             <div>
+            <h1>Tipo</h1>
+              {pokemonDetails && pokemonDetails.types.map((type) => {
+                return <div>{type.type.name}</div>;
+              })}
               <h1>Poderes</h1>
-              {capturedPokemon && capturedPokemon.stats.map((stat) => {
-            return (
-              <div>
-                <span>
-                  <b>{stat.stat.name}: </b>
-                </span>
-                <span>{stat.base_stat}</span>
-              </div>
-            );
-          })}
-            </div>
-            <div>
-              <h1>Tipo</h1>
-              {capturedPokemon && capturedPokemon.types.map((type) => {
-            return <div>{type.type.name}</div>;
-          })}
+              {pokemonDetails && pokemonDetails.stats.map((stat) => {
+                return (
+                  <div>
+                    <strong>{stat.stat.name}:</strong>
+                    {stat.base_stat}
+                  </div>
+                );
+              })}
             </div>
             <div>
               <h1>Principais ataques</h1>
-              {capturedPokemon && capturedPokemon.moves.slice(0, 5).map((move) => {
-            return <div>{move.move.name}</div>;
-          })}
+              {pokemonDetails && pokemonDetails.moves.slice(0, 10).map((move) => {
+                return <div>{move.move.name}</div>;
+              })}
             </div>
           </CardInfor>
         </Card>

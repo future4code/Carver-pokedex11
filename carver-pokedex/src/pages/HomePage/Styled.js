@@ -6,8 +6,8 @@ import styled from "styled-components";
    margin: 0;
    padding: 0;
  }
-   width: 100vw;
-   height: 100vh;
+   max-width: 100vw;
+   min-height: 100vh;
    
    background-color: #FBE0A1;
   
@@ -17,7 +17,7 @@ import styled from "styled-components";
    align-items: center;
    justify-content: space-evenly;
    width: 100%;
-   height: 10%;
+   height: 10vh;
    color: #01408F;
    background-color: #FDEECB;
    button{
@@ -91,18 +91,19 @@ import styled from "styled-components";
 }
  `
  export const AreaCard=styled.div` 
-  padding-bottom: 12vh;
+  padding-bottom: 2vh;
     margin-top: 1%;
     width: 100%;
-    min-height: 74vh;
+    min-height: 73vh;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 0.5fr);
+    grid-gap: 5px;
     justify-items: center;
     justify-content: space-evenly;
  `
  export const Card=styled.section`
-     height: 35vh;
-    width: 90%;
+     height: 30vh;
+    width: 60%;
     display: grid;
     grid-template-rows: 80% 20%;
   background-color: #FBC050;
