@@ -8,3 +8,6 @@ export const goToPokedex = (history) => {
 export const goToPokemonDetails = (history, name) => {
     history.push(`/pokemon/${name}`)
 }
+export const goBack = (history) => {
+    history.goBack()
+}

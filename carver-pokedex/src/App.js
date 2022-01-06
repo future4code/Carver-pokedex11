@@ -4,9 +4,11 @@ import GlobalState from './context/GlobalContext/GlobalState';
 
 const App = () => {
   return (
+
     <GlobalState>
     <Router />
     </GlobalState>
+
   );
 }
 

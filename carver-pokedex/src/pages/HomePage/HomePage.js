@@ -42,7 +42,6 @@ const HomePage = () => {
   })
 
 
-
   return (
     <MainContainer >
       <HeaderHome>
