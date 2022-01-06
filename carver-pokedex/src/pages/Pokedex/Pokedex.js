@@ -2,12 +2,15 @@ import React from "react"
 import { MainContainer,HeaderHome,AreaCard,Card,StyledButton1,StyledButton2,CardButtons,CardImage} from "./Styled";
 import {TiDeleteOutline} from "react-icons/ti"
 import {ImInfo} from 'react-icons/im'
+import {goToHomePage} from "../../route/coordinator"
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 const Pokedex = () => {
+  const history=useHistory()
   return (
     <MainContainer >
       <HeaderHome>
         Pokedex
-        <button>voltar</button>
+        <button onClick={()=>goToHomePage(history)}>voltar</button>
       </HeaderHome>
       <AreaCard>
      <Card>
