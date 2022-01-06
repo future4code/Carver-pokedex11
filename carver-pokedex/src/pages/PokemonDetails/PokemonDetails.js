@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
-import { MainContainer, HeaderHome, AreaCard, Card, CardImage, CardInfor } from "./Styled"
+import { MainContainer, HeaderHome, AreaCard, Card, CardImage, CardInfor, PowerContainer } from "./Styled"
 import { useHistory, useParams } from "react-router-dom"
 import { goToPokedex, goBack } from "../../route/coordinator"
 import { BASE_URL } from "../../constants/urls"
@@ -18,7 +18,7 @@ const PokemonDetails = () => {
   }, [])
 
   const getPokemonDetails = () => {
-    axios.get(`${BASE_URL}/pokemon/${params.name}`, {})
+    axios.get(`${BASE_URL}${params.name}`, {})
       .then((res) => {
         setPokemonDetails(res.data)
         setIsLoading(false)
@@ -44,27 +44,23 @@ const PokemonDetails = () => {
           </CardImage>
           <CardInfor>
             <div>
+            <h1>Tipo</h1>
+              {pokemonDetails && pokemonDetails.types.map((type) => {
+                return <div>{type.type.name}</div>;
+              })}
               <h1>Poderes</h1>
               {pokemonDetails && pokemonDetails.stats.map((stat) => {
                 return (
-                  <div>
-                    <span>
-                      <strong>{stat.stat.name}: </strong>
-                    </span>
-                    <span>{stat.base_stat}</span>
-                  </div>
+                  <PowerContainer>
+                    <strong>{stat.stat.name}:</strong>
+                    {stat.base_stat}
+                  </PowerContainer>
                 );
               })}
             </div>
             <div>
-              <h1>Tipo</h1>
-              {pokemonDetails && pokemonDetails.types.map((type) => {
-                return <div>{type.type.name}</div>;
-              })}
-            </div>
-            <div>
               <h1>Principais ataques</h1>
-              {pokemonDetails && pokemonDetails.moves.slice(0, 5).map((move) => {
+              {pokemonDetails && pokemonDetails.moves.slice(0, 10).map((move) => {
                 return <div>{move.move.name}</div>;
               })}
             </div>

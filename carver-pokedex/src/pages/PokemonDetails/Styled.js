@@ -131,4 +131,13 @@ export const CardInfor=styled.div`
     p{
         color: #0284FE;
     }
+    div{
+      margin-top: 15px;
+    }
+`
+
+export const PowerContainer=styled.div`
+display: flex;
+align-items: center;
+margin: 3px;
 `
