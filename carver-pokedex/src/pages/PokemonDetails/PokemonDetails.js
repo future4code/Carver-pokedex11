@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
-import { MainContainer, HeaderHome, AreaCard, Card, CardImage, CardInfor } from "./Styled"
+import { MainContainer, HeaderHome, AreaCard, Card, CardImage, CardInfor, PowerContainer } from "./Styled"
 import { useHistory, useParams } from "react-router-dom"
 import { goToPokedex, goBack } from "../../route/coordinator"
 import { BASE_URL } from "../../constants/urls"
@@ -18,7 +18,7 @@ const PokemonDetails = () => {
   }, [])
 
   const getPokemonDetails = () => {
-    axios.get(`${BASE_URL}/pokemon/${params.name}`, {})
+    axios.get(`${BASE_URL}${params.name}`, {})
       .then((res) => {
         setPokemonDetails(res.data)
         setIsLoading(false)
@@ -33,38 +33,34 @@ const PokemonDetails = () => {
     <MainContainer >
       <HeaderHome>
         <button onClick={() => goBack(history)}>Voltar</button>
-        <h1>{pokemonDetails.name}</h1>
+        <h1>{pokemonDetails.name && pokemonDetails.name.toUpperCase()}</h1>
         <button onClick={() => goToPokedex(history)}>Ir para Pokedex</button>
       </HeaderHome>
       {!isLoading ? (<AreaCard key={pokemonDetails.name}>
         <Card>
           <CardImage>
-            <img src={pokemonDetails.sprites.front_default} alt="imagem do pokemon de frente" />
-            <img src={pokemonDetails.sprites.back_default} alt="imagem do pokemon de costas" />
+            <img src={pokemonDetails && pokemonDetails.sprites.front_default} alt="imagem do pokemon de frente" />
+            <img src={pokemonDetails && pokemonDetails.sprites.back_default} alt="imagem do pokemon de costas" />
           </CardImage>
           <CardInfor>
             <div>
+            <h1>Tipo</h1>
+              {pokemonDetails && pokemonDetails.types.map((type) => {
+                return <div>{type.type.name}</div>;
+              })}
               <h1>Poderes</h1>
               {pokemonDetails && pokemonDetails.stats.map((stat) => {
                 return (
                   <div>
-                    <span>
-                      <strong>{stat.stat.name}: </strong>
-                    </span>
-                    <span>{stat.base_stat}</span>
+                    <strong>{stat.stat.name}:</strong>
+                    {stat.base_stat}
                   </div>
                 );
               })}
             </div>
             <div>
-              <h1>Tipo</h1>
-              {pokemonDetails && pokemonDetails.types.map((type) => {
-                return <div>{type.type.name}</div>;
-              })}
-            </div>
-            <div>
               <h1>Principais ataques</h1>
-              {pokemonDetails && pokemonDetails.moves.slice(0, 5).map((move) => {
+              {pokemonDetails && pokemonDetails.moves.slice(0, 10).map((move) => {
                 return <div>{move.move.name}</div>;
               })}
             </div>
