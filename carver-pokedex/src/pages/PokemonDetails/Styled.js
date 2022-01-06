@@ -103,6 +103,7 @@ import styled from "styled-components";
     display: flex;
     background-color: #FBC050;
     border-radius: 20px 20px 20px 20px;
+    
 
 `
 export const CardImage=styled.div`
@@ -113,8 +114,9 @@ background:#FBC050;
     justify-content: space-evenly;
     -webkit-box-align: center;
     align-items: center;
-    
-    border-radius: 50px 50px 0 0;
+    margin-left: 50px;
+
+    border-radius: 50px 50px 50px 50px;
     img{
         width: 150px;
     }

@@ -14,7 +14,11 @@ const HomePage = () => {
     <MainContainer >
       <HeaderHome>
       Lista de Pokemons
+<<<<<<< HEAD
       <button onClick={()=>goToPokedex(history)}>Pokedex</button>
+=======
+      <button onClick={()=>goToPokedex}>Pokedex</button>
+>>>>>>> eb4de0d12f92b4f7b870fe55dc5125f43731eee6
       </HeaderHome>
      <AreaCard>
      <Card>
