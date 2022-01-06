@@ -1,4 +1,23 @@
-import React, { useContext } from "react"
+
+import React from "react"
+import {goToPokedex} from '../../route/coordinator'
+import { MainContainer,HeaderHome,Card,CardImage,CardButtons, AreaCard, StyledButton1,StyledButton2} from "./Styled";
+import {MdCatchingPokemon} from 'react-icons/md'
+import {ImInfo} from 'react-icons/im'
+import { useHistory } from "react-router-dom";
+
+
+const HomePage = () => {
+  const history = useHistory()
+  console.log(history)
+  
+  return (
+    <MainContainer >
+      <HeaderHome>
+      Lista de Pokemons
+      <button onClick={()=>goToPokedex(history)}>Pokedex</button>
+
+
 import { goToHomePage, goToPokedex,goToPokemonDetails } from '../../route/coordinator'
 import { MainContainer, HeaderHome, Card, CardImage, CardButtons, AreaCard, StyledButton1, StyledButton2 } from "./Styled";
 import { MdCatchingPokemon } from 'react-icons/md'
@@ -37,6 +56,7 @@ const HomePage = () => {
       <HeaderHome>
         Lista de Pokemons
         <button onClick={() => goToPokedex(history)}>Pokedex</button>
+
       </HeaderHome>
       <AreaCard>
     {resultPoke}
