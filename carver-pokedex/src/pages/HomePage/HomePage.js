@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 import React from "react"
 import {goToPokedex} from '../../route/coordinator'
@@ -25,6 +26,9 @@ const HomePage = () => {
       <button onClick={()=>goToPokedex(history)}>Pokedex</button>
 
 
+=======
+import React, { useContext } from "react"
+>>>>>>> 9da6df6da06fd322d62edf35e16b4bff593067c2
 import { goToHomePage, goToPokedex,goToPokemonDetails } from '../../route/coordinator'
 import { MainContainer, HeaderHome, Card, CardImage, CardButtons, AreaCard, StyledButton1, StyledButton2 } from "./Styled";
 import { MdCatchingPokemon } from 'react-icons/md'
@@ -62,8 +66,11 @@ const HomePage = () => {
       <HeaderHome>
         Lista de Pokemons
         <button onClick={() => goToPokedex(history)}>Pokedex</button>
+<<<<<<< HEAD
 
 >>>>>>> d3a9d9d89903b78625e90377d4983de21f0bf47e
+=======
+>>>>>>> 9da6df6da06fd322d62edf35e16b4bff593067c2
       </HeaderHome>
       <AreaCard>
     {resultPoke}
