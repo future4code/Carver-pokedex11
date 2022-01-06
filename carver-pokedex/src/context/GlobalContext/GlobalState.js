@@ -1,40 +1,47 @@
-import React,{useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import GlobalStateContext from "./GlobalStateContext";
-import { useRequestData } from "../../hooks/useRequest";
 import { BASE_URL } from "../../constants/urls";
 
+const GlobalState = (props) => {
+    const [pokedex, setPokedex] = useState([])
 
-const GlobalState =(props)=>{
-    const detaisPoke=[]
-    let pokemon = useRequestData(`${BASE_URL}?offset=20&limit=20`)
+    const [data, setData] = useState([])
+    const [pokeDetais, setPokeDetais] = useState([])
 
 
-   ///get poke detais
-    const getDetaisPoke= async(url)=>{
-        try {
-            const detais= await axios.get(url)
-           
-           detaisPoke.push(detais.data)
-          
+
+    useEffect(() => {
+        axios.get(`${BASE_URL}?offset=20&limit=20`)
+            .then((ans) => {
+                setData(ans.data.results)
+            }).catch((err) => {
+                alert("Alguma coisa de errado aconteceu, por favor, tente novamente")
+            })
+    }, [])
+
+    useEffect(() => {
+
+        const getDetails = async () => {
+            const newDetails = []
+            for (let pokemon of data) {
+                try {
+                    const { data } = await axios.get(pokemon.url)
+                    const newData = { ...data, isPokedex: false }
+                    newDetails.push(newData)
+                } catch (error) {
+                    alert("Alguma coisa de errado aconteceu, por favor, tente novamente")
+                }
+            }
+            setPokeDetais(newDetails)
         }
-        catch(erro){
-            console.log(erro)
-        }
-    }
+        getDetails()
 
-    const urlPoke= pokemon&&pokemon.map((pk)=>{
-      
+    }, [data])
 
-        getDetaisPoke(pk.url)
-      
-    })
-
-
-
-    return(
-        <GlobalStateContext.Provider value={detaisPoke}>
-        {props.children}
+    return (
+        <GlobalStateContext.Provider value={[pokeDetais, pokedex, setPokedex]}>
+            {props.children}
         </GlobalStateContext.Provider>
     )
 
