@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 
- export const MainContainer=styled.section` 
+export const MainContainer = styled.section` 
  body{
    margin: 0;
    padding: 0;
@@ -12,7 +12,7 @@ import styled from "styled-components";
    background-color: #FBE0A1;
   
  `
- export const HeaderHome=styled.section`
+export const HeaderHome = styled.section`
    display: flex;
    align-items: center;
    justify-content: space-evenly;
@@ -90,7 +90,7 @@ import styled from "styled-components";
    }
 }
  `
-  export const AreaCard=styled.div` 
+export const AreaCard = styled.div` 
   padding-bottom: 12vh;
     margin-top: 1%;
     width: 100%;
@@ -98,7 +98,7 @@ import styled from "styled-components";
     display: flex;
     justify-content: center;
  `
- export const Card=styled.section`
+export const Card = styled.section`
     width: 70%;
     display: flex;
     background-color: #FBC050;
@@ -106,7 +106,7 @@ import styled from "styled-components";
     
 
 `
-export const CardImage=styled.div`
+export const CardImage = styled.div`
 background:#FBC050;
     display: flex;
     flex-direction: column;
@@ -121,7 +121,7 @@ background:#FBC050;
         width: 150px;
     }
 `
-export const CardInfor=styled.div`
+export const CardInfor = styled.div`
     
     display: flex;
     text-align: center;
@@ -137,4 +137,35 @@ export const CardInfor=styled.div`
       margin-top: 15px;
     }
 `
+export const StyledButton=styled.button` 
+color: #01408F;
+      background-color: #FBC050;
+  border: none;
+   text-align: center;
 
+   height: 3.5vh;
+  opacity: 1;
+  transition: 0.3s;
+  border-radius: 0 0 20px 20px;
+
+  text-decoration: none;
+  cursor: pointer;
+    
+    :hover{
+       opacity: 0.6;
+       border-radius: 0 0 0 20px;
+       color: #e1306c;
+     
+    }
+    :active{
+       opacity: 1;
+       color: #01408F;
+    }
+`
+export const ButtonsContainer = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+margin: 20px;
+align-items: center;
+`
