@@ -6,8 +6,9 @@ export const MainContainer = styled.section`
    margin: 0;
    padding: 0;
  }
-   max-width: 100vw;
-   min-height: 100vh;
+   width: 100vw;
+   height: 100%;
+   
    
    background-color: #FBE0A1;
   
@@ -17,7 +18,7 @@ export const HeaderHome = styled.section`
    align-items: center;
    justify-content: space-evenly;
    width: 100%;
-   height: 10vh;
+   height: 70px;
    color: #01408F;
    background-color: #FDEECB;
    button{
@@ -101,6 +102,7 @@ export const AreaCard = styled.div`
     grid-gap: 5px;
     justify-items: center;
     justify-content: space-evenly;
+    gap: 50px
  `
 export const Card = styled.section`
    height: 35vh;
