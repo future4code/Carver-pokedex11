@@ -16,7 +16,8 @@ const PokemonDetails = () => {
   const [pokemonDetails, setPokemonDetails] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   const [detaisPokemons, poke, setPoke, pokedex, setPokedex] = useContext(GlobalStateContext)
-  const isPokedex = false
+  const isPokedex = null
+  // const [button, setButton] = useState(isPokedex ? "Remover" : "Adicionar")
 
   useEffect(() => {
     getPokemonDetails()
@@ -33,6 +34,10 @@ const PokemonDetails = () => {
       })
   }
 
+  String.prototype.capitalize = function () {
+    return this.charAt(0).toUpperCase() + this.substr(1)
+  }
+
   const addPoke = (name, photo) => {
     const indexPoke = detaisPokemons.findIndex((pokes) => { return pokes.name === name })
     detaisPokemons[indexPoke].isPokedex = true
@@ -40,18 +45,24 @@ const PokemonDetails = () => {
     setPoke(newPokedex)
   }
 
-  // const removePoke = (name, photo) => {
-  //   const indexPoke = pokedex.findIndex((pokes) => {return pokes.name === name})
-  //   pokedex[indexPoke].isPokedex = false
-  //   const newPokeList = [...pokedex, { name, photo }]
-  //   setPokedex(newPokeList)
+  const removePoke = (name, photo) => {
+
+  }
+
+  // const buttonAction = () => {
+  //   if (isPokedex === false){
+  //     addPoke(pokemonDetails.name, pokemonDetails.sprites.front_default)
+  //     setButton("Adicionar")
+  //   } else {
+  //     setButton("Remover")
+  //   }
   // }
 
   return (
     <MainContainer >
       <HeaderHome>
         <button onClick={() => goBack(history)}>Voltar</button>
-        <h1>{pokemonDetails.name && pokemonDetails.name.toUpperCase()}</h1>
+        <h1>{pokemonDetails.name && pokemonDetails.name.capitalize()}</h1>
         <button onClick={() => goToPokedex(history)}>Ir para Pokedex</button>
       </HeaderHome>
       {!isLoading ? (<AreaCard key={pokemonDetails.name}>
@@ -64,13 +75,13 @@ const PokemonDetails = () => {
             <div>
               <h1>Tipo</h1>
               {pokemonDetails && pokemonDetails.types.map((type) => {
-                return <div>{type.type.name}</div>;
-              })}no
+                return <div>{type.type.name.capitalize()}</div>;
+              })}
               <h1>Poderes</h1>
               {pokemonDetails && pokemonDetails.stats.map((stat) => {
                 return (
                   <div>
-                    <strong>{stat.stat.name}:</strong>
+                    <strong>{stat.stat.name.capitalize()}:</strong>
                     {stat.base_stat}
                   </div>
                 );
@@ -79,15 +90,15 @@ const PokemonDetails = () => {
             <div>
               <h1>Principais ataques</h1>
               {pokemonDetails && pokemonDetails.moves.slice(0, 10).map((move) => {
-                return <div>{move.move.name}</div>;
+                return <div>{move.move.name.capitalize()}</div>;
               })}
             </div>
           </CardInfor>
           <ButtonsContainer>
             {isPokedex ?
-              <StyledButton>
-                <TiDeleteOutline size="2.8em" /> </StyledButton> :
-              <StyledButton onClick={() => addPoke(pokemonDetails.name, pokemonDetails.sprites.front_default)} >
+              <StyledButton onClick={() => removePoke()}>
+                <TiDeleteOutline size="2.8em" /></StyledButton> :
+              <StyledButton onClick={() => addPoke(pokemonDetails.name, pokemonDetails.sprites.front_default)}>
                 <MdCatchingPokemon size="2.5em" /></StyledButton>}
           </ButtonsContainer>
         </Card>
