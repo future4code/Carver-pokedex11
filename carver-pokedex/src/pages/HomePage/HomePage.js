@@ -15,16 +15,16 @@ const HomePage = () => {
 
 
 
-  const addPoke = (name, photo) => {
+  const addPoke = (name, photo, id) => {
     const indexPoke = detaisPokemons.findIndex((pokes) => { return pokes.name === name })
     detaisPokemons[indexPoke].isPokedex = true
-    const newPokedex = [...poke, { name, photo }]
+    const newPokedex = [...poke, { name, photo, id }]
     setPoke(newPokedex)
 
   }
-
+  
   const resultPoke = detaisPokemons.map((res) => {
-
+console.log(res)
     if (res.isPokedex == false) {
       return (
         <Card key={res.name}>
@@ -33,7 +33,7 @@ const HomePage = () => {
             <p>{res.name}</p>
           </CardImage>
           <CardButtons>
-            <StyledButton2 onClick={() => addPoke(res.name, res.sprites.front_default)}  ><MdCatchingPokemon size="2.5em" /> </StyledButton2>
+            <StyledButton2 onClick={() => addPoke(res.name, res.sprites.front_default, res.isPokedex)}  ><MdCatchingPokemon size="2.5em" /> </StyledButton2>
             <StyledButton1 onClick={() => goToPokemonDetails(history, res.name)} ><ImInfo size="2.2em" /></StyledButton1>
           </CardButtons>
         </Card>)

@@ -7,7 +7,8 @@ import styled from "styled-components";
    padding: 0;
  }
    width: 100vw;
-   height: 100vh;
+   height: 100%;
+   
    
    background-color: #FBE0A1;
   
@@ -17,7 +18,7 @@ import styled from "styled-components";
    align-items: center;
    justify-content: space-evenly;
    width: 100%;
-   height: 10%;
+   height: 70px;
    color: #01408F;
    background-color: #FDEECB;
    button{
@@ -99,6 +100,7 @@ import styled from "styled-components";
     grid-template-columns: repeat(4, 1fr);
     justify-items: center;
     justify-content: space-evenly;
+    gap: 50px
  `
  export const Card=styled.section`
      height: 35vh;
