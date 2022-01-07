@@ -16,9 +16,9 @@ const PokemonDetails = () => {
   const [pokemonDetails, setPokemonDetails] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   const [detaisPokemons, poke, setPoke, pokedex, setPokedex] = useContext(GlobalStateContext)
-  const isPokedex = null
+  const [isPokedex, setIsPokedex] = useState(null)
   // const [button, setButton] = useState(isPokedex ? "Remover" : "Adicionar")
-
+  console.log(isPokedex)
   useEffect(() => {
     getPokemonDetails()
   }, [])
@@ -43,29 +43,21 @@ const PokemonDetails = () => {
     detaisPokemons[indexPoke].isPokedex = true
     const newPokedex = [...poke, { name, photo }]
     setPoke(newPokedex)
+    setIsPokedex(true)
   }
 
-  const removePoke = (name, photo) => {
+  const removePoke = () => {
 
   }
-
-  // const buttonAction = () => {
-  //   if (isPokedex === false){
-  //     addPoke(pokemonDetails.name, pokemonDetails.sprites.front_default)
-  //     setButton("Adicionar")
-  //   } else {
-  //     setButton("Remover")
-  //   }
-  // }
 
   return (
     <MainContainer >
-      <HeaderHome>
+      <HeaderHome key={pokemonDetails.name}>
         <button onClick={() => goBack(history)}>Voltar</button>
         <h1>{pokemonDetails.name && pokemonDetails.name.capitalize()}</h1>
         <button onClick={() => goToPokedex(history)}>Ir para Pokedex</button>
       </HeaderHome>
-      {!isLoading ? (<AreaCard key={pokemonDetails.name}>
+      {!isLoading ? (<AreaCard>
         <Card>
           <CardImage>
             <img src={pokemonDetails && pokemonDetails.sprites.front_default} alt="imagem do pokemon de frente" />
