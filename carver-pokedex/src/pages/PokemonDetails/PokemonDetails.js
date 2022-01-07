@@ -44,10 +44,10 @@ const PokemonDetails = () => {
           </CardImage>
           <CardInfor>
             <div>
-            <h1>Tipo</h1>
+              <h1>Tipo</h1>
               {pokemonDetails && pokemonDetails.types.map((type) => {
                 return <div>{type.type.name}</div>;
-              })}
+              })}no
               <h1>Poderes</h1>
               {pokemonDetails && pokemonDetails.stats.map((stat) => {
                 return (
