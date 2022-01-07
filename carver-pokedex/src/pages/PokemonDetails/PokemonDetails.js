@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import axios from "axios"
-import { MainContainer, HeaderHome, AreaCard, Card, CardImage, CardInfor, PowerContainer } from "./Styled"
+import { MainContainer, HeaderHome, AreaCard, Card, CardImage, CardInfor, StyledButton, ButtonsContainer } from "./Styled"
 import { useHistory, useParams } from "react-router-dom"
 import { goToPokedex, goBack } from "../../route/coordinator"
 import { BASE_URL } from "../../constants/urls"
+import GlobalStateContext from "../../context/GlobalContext/GlobalStateContext"
+import { MdCatchingPokemon } from "react-icons/md"
+import { TiDeleteOutline } from "react-icons/ti"
 
 
 const PokemonDetails = () => {
@@ -12,6 +15,8 @@ const PokemonDetails = () => {
   const params = useParams()
   const [pokemonDetails, setPokemonDetails] = useState({})
   const [isLoading, setIsLoading] = useState(true)
+  const [detaisPokemons, poke, setPoke, pokedex, setPokedex] = useContext(GlobalStateContext)
+  const isPokedex = false
 
   useEffect(() => {
     getPokemonDetails()
@@ -22,12 +27,25 @@ const PokemonDetails = () => {
       .then((res) => {
         setPokemonDetails(res.data)
         setIsLoading(false)
-        console.log(res.data)
       })
       .catch((err) => {
-        console.log(err.response)
+        alert("Ocorreu um erro, tente novamente mais tarde!")
       })
   }
+
+  const addPoke = (name, photo) => {
+    const indexPoke = detaisPokemons.findIndex((pokes) => { return pokes.name === name })
+    detaisPokemons[indexPoke].isPokedex = true
+    const newPokedex = [...poke, { name, photo }]
+    setPoke(newPokedex)
+  }
+
+  // const removePoke = (name, photo) => {
+  //   const indexPoke = pokedex.findIndex((pokes) => {return pokes.name === name})
+  //   pokedex[indexPoke].isPokedex = false
+  //   const newPokeList = [...pokedex, { name, photo }]
+  //   setPokedex(newPokeList)
+  // }
 
   return (
     <MainContainer >
@@ -44,7 +62,7 @@ const PokemonDetails = () => {
           </CardImage>
           <CardInfor>
             <div>
-            <h1>Tipo</h1>
+              <h1>Tipo</h1>
               {pokemonDetails && pokemonDetails.types.map((type) => {
                 return <div>{type.type.name}</div>;
               })}
@@ -65,6 +83,13 @@ const PokemonDetails = () => {
               })}
             </div>
           </CardInfor>
+          <ButtonsContainer>
+            {isPokedex ?
+              <StyledButton>
+                <TiDeleteOutline size="2.8em" /> </StyledButton> :
+              <StyledButton onClick={() => addPoke(pokemonDetails.name, pokemonDetails.sprites.front_default)} >
+                <MdCatchingPokemon size="2.5em" /></StyledButton>}
+          </ButtonsContainer>
         </Card>
       </AreaCard>
       ) : (

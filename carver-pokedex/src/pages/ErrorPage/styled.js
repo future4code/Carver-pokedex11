@@ -13,5 +13,4 @@ import styled from "styled-components";
    align-items: center;
    color:#01408F;
    background-color: #FBE0A1;
-
  `
