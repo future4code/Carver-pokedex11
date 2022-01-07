@@ -40,7 +40,7 @@ const GlobalState = (props) => {
     }, [data])
 
     return (
-        <GlobalStateContext.Provider value={[pokeDetais, pokedex, setPokedex]}>
+        <GlobalStateContext.Provider value={[pokeDetais, pokedex, setPokedex]} >
             {props.children}
         </GlobalStateContext.Provider>
     )
