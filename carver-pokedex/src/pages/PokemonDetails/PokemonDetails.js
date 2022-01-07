@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import axios from "axios"
-import { MainContainer, HeaderHome, AreaCard, Card, CardImage, CardInfor, PowerContainer } from "./Styled"
+import { MainContainer, HeaderHome, AreaCard, Card, CardImage, CardInfor, StyledButton, ButtonsContainer } from "./Styled"
 import { useHistory, useParams } from "react-router-dom"
 import { goToPokedex, goBack } from "../../route/coordinator"
 import { BASE_URL } from "../../constants/urls"
+import GlobalStateContext from "../../context/GlobalContext/GlobalStateContext"
+import { MdCatchingPokemon } from "react-icons/md"
+import { TiDeleteOutline } from "react-icons/ti"
 
 
 const PokemonDetails = () => {
@@ -12,7 +15,10 @@ const PokemonDetails = () => {
   const params = useParams()
   const [pokemonDetails, setPokemonDetails] = useState({})
   const [isLoading, setIsLoading] = useState(true)
+  const [detaisPokemons, poke, setPoke, pokedex, setPokedex] = useContext(GlobalStateContext)
+  const [isPokedex, setIsPokedex] = useState(null)
 
+  console.log(isPokedex)
   useEffect(() => {
     getPokemonDetails()
   }, [])
@@ -22,21 +28,42 @@ const PokemonDetails = () => {
       .then((res) => {
         setPokemonDetails(res.data)
         setIsLoading(false)
-        console.log(res.data)
       })
       .catch((err) => {
-        console.log(err.response)
+        alert("Ocorreu um erro, tente novamente mais tarde!")
       })
   }
 
+  String.prototype.capitalize = function () {
+    return this.charAt(0).toUpperCase() + this.substr(1)
+  }
+
+  const addPoke = (name, photo) => {
+    const indexPoke = detaisPokemons.findIndex((pokes) => { return pokes.name === name })
+    detaisPokemons[indexPoke].isPokedex = true
+    const newPokedex = [...poke, { name, photo,isPokedex:true }]
+    setPoke(newPokedex)
+    setIsPokedex(true)
+  }
+
+  // const removePoke = (name) => {
+  //   const indexPoke = pokedex.findIndex((pokes) => { return pokes.name === name })
+  //   pokedex[indexPoke].isPokedex = false
+  //   const indexPokedex = poke.findIndex((pokes) => { return pokes.name === name })
+  //   const remove = poke.splice(indexPokedex,1)
+  //   const copie = [...poke]
+  //   setPoke(copie)
+  //   setIsPokedex(false)
+  // }
+  
   return (
     <MainContainer >
-      <HeaderHome>
+      <HeaderHome key={pokemonDetails.name}>
         <button onClick={() => goBack(history)}>Voltar</button>
-        <h1>{pokemonDetails.name && pokemonDetails.name.toUpperCase()}</h1>
+        <h1>{pokemonDetails.name && pokemonDetails.name.capitalize()}</h1>
         <button onClick={() => goToPokedex(history)}>Ir para Pokedex</button>
       </HeaderHome>
-      {!isLoading ? (<AreaCard key={pokemonDetails.name}>
+      {!isLoading ? (<AreaCard>
         <Card>
           <CardImage>
             <img src={pokemonDetails && pokemonDetails.sprites.front_default} alt="imagem do pokemon de frente" />
@@ -44,15 +71,15 @@ const PokemonDetails = () => {
           </CardImage>
           <CardInfor>
             <div>
-            <h1>Tipo</h1>
+              <h1>Tipo</h1>
               {pokemonDetails && pokemonDetails.types.map((type) => {
-                return <div>{type.type.name}</div>;
+                return <div>{type.type.name.capitalize()}</div>;
               })}
               <h1>Poderes</h1>
               {pokemonDetails && pokemonDetails.stats.map((stat) => {
                 return (
                   <div>
-                    <strong>{stat.stat.name}:</strong>
+                    <strong>{stat.stat.name.capitalize()}:</strong>
                     {stat.base_stat}
                   </div>
                 );
@@ -61,10 +88,17 @@ const PokemonDetails = () => {
             <div>
               <h1>Principais ataques</h1>
               {pokemonDetails && pokemonDetails.moves.slice(0, 10).map((move) => {
-                return <div>{move.move.name}</div>;
+                return <div>{move.move.name.capitalize()}</div>;
               })}
             </div>
           </CardInfor>
+          <ButtonsContainer>
+            {isPokedex ? "" :
+              // <StyledButton onClick={() => removePoke(pokemonDetails.name, pokemonDetails.sprites.front_default)}>
+              //   <TiDeleteOutline size="2.8em" /></StyledButton> :
+              <StyledButton onClick={() => addPoke(pokemonDetails.name, pokemonDetails.sprites.front_default)}>
+                <MdCatchingPokemon size="2.5em" /></StyledButton>}
+          </ButtonsContainer>
         </Card>
       </AreaCard>
       ) : (

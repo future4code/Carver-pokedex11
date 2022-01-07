@@ -1,24 +1,33 @@
 import styled from "styled-components";
 
 
- export const MainContainer=styled.section` 
+export const MainContainer = styled.section` 
  body{
    margin: 0;
    padding: 0;
  }
+<<<<<<< HEAD
    width: 100vw;
    height: 100%;
    
+=======
+   max-width: 100vw;
+   min-height: 100vh;
+>>>>>>> cf07ecaa18db7660dbee0c88da3132ed334b63b5
    
    background-color: #FBE0A1;
   
  `
- export const HeaderHome=styled.section`
+export const HeaderHome = styled.section`
    display: flex;
    align-items: center;
    justify-content: space-evenly;
    width: 100%;
+<<<<<<< HEAD
    height: 70px;
+=======
+   height: 10vh;
+>>>>>>> cf07ecaa18db7660dbee0c88da3132ed334b63b5
    color: #01408F;
    background-color: #FDEECB;
    button{
@@ -91,21 +100,23 @@ import styled from "styled-components";
    }
 }
  `
-  export const AreaCard=styled.div` 
+
+export const AreaCard = styled.div` 
   padding-bottom: 12vh;
     margin-top: 1%;
     width: 100%;
     min-height: 74vh;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
     justify-items: center;
     justify-content: space-evenly;
     gap: 50px
  `
- export const Card=styled.section`
-     height: 35vh;
-    width: 90%;
-    display: grid;
+export const Card = styled.section`
+   height: 35vh;
+   width: 70%;
+   display: grid;
     grid-template-rows: 80% 20%;
   background-color: #FBC050;
   border-radius: 20px 20px 20px 20px;
@@ -113,7 +124,7 @@ import styled from "styled-components";
      height: 60% ;
   }
 `
-export const CardImage=styled.div`
+export const CardImage = styled.div`
 background:#FBC050;
     display: flex;
     -webkit-box-pack: center;
@@ -123,12 +134,12 @@ background:#FBC050;
     
     border-radius: 50px 50px 0 0;
 `
-export const CardButtons=styled.div` 
+export const CardButtons = styled.div` 
 display: grid;
     grid-template-columns: 1fr 1fr;
 `
 
-export const StyledButton1=styled.button` 
+export const StyledButton1 = styled.button` 
    color: #01408F;
    background-color: #FBC050;
    height: 3.5vh;
@@ -152,7 +163,7 @@ export const StyledButton1=styled.button`
        color: #01408F;
     }
 `
-export const StyledButton2=styled.button` 
+export const StyledButton2 = styled.button` 
    color: #01408F;
    background-color: #FBC050;
    border: none;

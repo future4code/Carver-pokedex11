@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 
- export const MainContainer=styled.section` 
+export const MainContainer = styled.section` 
  body{
    margin: 0;
    padding: 0;
@@ -10,9 +10,9 @@ import styled from "styled-components";
    min-height: 100vh;
    
    background-color: #FBE0A1;
-  
+
  `
- export const HeaderHome=styled.section`
+export const HeaderHome = styled.section`
    display: flex;
    align-items: center;
    justify-content: space-evenly;
@@ -90,7 +90,7 @@ import styled from "styled-components";
    }
 }
  `
- export const AreaCard=styled.div` 
+export const AreaCard = styled.div` 
   padding-bottom: 2vh;
     margin-top: 1%;
     width: 100%;
@@ -101,7 +101,7 @@ import styled from "styled-components";
     justify-items: center;
     justify-content: space-evenly;
  `
- export const Card=styled.section`
+export const Card = styled.section`
      height: 30vh;
     width: 60%;
     display: grid;
@@ -113,7 +113,7 @@ import styled from "styled-components";
   }
  
 `
-export const CardImage=styled.div`
+export const CardImage = styled.div`
 background:#FBC050;
     display: flex;
     -webkit-box-pack: center;
@@ -123,13 +123,13 @@ background:#FBC050;
     
     border-radius: 50px 50px 0 0;
 `
-export const CardButtons=styled.div` 
+export const CardButtons = styled.div` 
 display: grid;
     grid-template-columns: 1fr 1fr;
 
 `
 
-export const StyledButton1=styled.button` 
+export const StyledButton1 = styled.button` 
    color: #01408F;
    background-color: #FBC050;
    height: 3.5vh;
@@ -153,7 +153,7 @@ export const StyledButton1=styled.button`
        color: #01408F;
     }
 `
-export const StyledButton2=styled.button` 
+export const StyledButton2 = styled.button` 
 color: #01408F;
       background-color: #FBC050;
   border: none;
