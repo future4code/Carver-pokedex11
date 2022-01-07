@@ -17,7 +17,7 @@ const PokemonDetails = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [detaisPokemons, poke, setPoke, pokedex, setPokedex] = useContext(GlobalStateContext)
   const [isPokedex, setIsPokedex] = useState(null)
-  // const [button, setButton] = useState(isPokedex ? "Remover" : "Adicionar")
+
   console.log(isPokedex)
   useEffect(() => {
     getPokemonDetails()
@@ -41,15 +41,21 @@ const PokemonDetails = () => {
   const addPoke = (name, photo) => {
     const indexPoke = detaisPokemons.findIndex((pokes) => { return pokes.name === name })
     detaisPokemons[indexPoke].isPokedex = true
-    const newPokedex = [...poke, { name, photo }]
+    const newPokedex = [...poke, { name, photo,isPokedex:true }]
     setPoke(newPokedex)
     setIsPokedex(true)
   }
 
-  const removePoke = () => {
-
-  }
-
+  // const removePoke = (name) => {
+  //   const indexPoke = pokedex.findIndex((pokes) => { return pokes.name === name })
+  //   pokedex[indexPoke].isPokedex = false
+  //   const indexPokedex = poke.findIndex((pokes) => { return pokes.name === name })
+  //   const remove = poke.splice(indexPokedex,1)
+  //   const copie = [...poke]
+  //   setPoke(copie)
+  //   setIsPokedex(false)
+  // }
+  
   return (
     <MainContainer >
       <HeaderHome key={pokemonDetails.name}>
@@ -87,9 +93,9 @@ const PokemonDetails = () => {
             </div>
           </CardInfor>
           <ButtonsContainer>
-            {isPokedex ?
-              <StyledButton onClick={() => removePoke()}>
-                <TiDeleteOutline size="2.8em" /></StyledButton> :
+            {isPokedex ? "" :
+              // <StyledButton onClick={() => removePoke(pokemonDetails.name, pokemonDetails.sprites.front_default)}>
+              //   <TiDeleteOutline size="2.8em" /></StyledButton> :
               <StyledButton onClick={() => addPoke(pokemonDetails.name, pokemonDetails.sprites.front_default)}>
                 <MdCatchingPokemon size="2.5em" /></StyledButton>}
           </ButtonsContainer>
