@@ -13,30 +13,6 @@ const HomePage = () => {
 
     const [detaisPokemons, poke, setPoke] = useContext(GlobalStateContext)
 
-<<<<<<< HEAD
-  const addPoke = (name, photo, id) => {
-    const indexPoke = detaisPokemons.findIndex((pokes) => { return pokes.name === name })
-    detaisPokemons[indexPoke].isPokedex = true
-    const newPokedex = [...poke, { name, photo, id }]
-    setPoke(newPokedex)
-
-  }
-  
-  const resultPoke = detaisPokemons.map((res) => {
-console.log(res)
-    if (res.isPokedex == false) {
-      return (
-        <Card key={res.name}>
-          <CardImage>
-            <img src={res.sprites.front_default} alt={res.name} />
-            <p>{res.name}</p>
-          </CardImage>
-          <CardButtons>
-            <StyledButton2 onClick={() => addPoke(res.name, res.sprites.front_default, res.isPokedex)}  ><MdCatchingPokemon size="2.5em" /> </StyledButton2>
-            <StyledButton1 onClick={() => goToPokemonDetails(history, res.name)} ><ImInfo size="2.2em" /></StyledButton1>
-          </CardButtons>
-        </Card>)
-=======
 
 
     const addPoke = (name, photo, isPokedex) => {
@@ -45,7 +21,6 @@ console.log(res)
         const newPokedex = [...poke, { name, photo,isPokedex:true }]
         setPoke(newPokedex)
 
->>>>>>> cf07ecaa18db7660dbee0c88da3132ed334b63b5
     }
 
     const resultPoke = detaisPokemons.map((res) => {

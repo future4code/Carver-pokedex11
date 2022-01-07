@@ -6,14 +6,9 @@ export const MainContainer = styled.section`
    margin: 0;
    padding: 0;
  }
-<<<<<<< HEAD
    width: 100vw;
    height: 100%;
    
-=======
-   max-width: 100vw;
-   min-height: 100vh;
->>>>>>> cf07ecaa18db7660dbee0c88da3132ed334b63b5
    
    background-color: #FBE0A1;
   
@@ -23,11 +18,7 @@ export const HeaderHome = styled.section`
    align-items: center;
    justify-content: space-evenly;
    width: 100%;
-<<<<<<< HEAD
    height: 70px;
-=======
-   height: 10vh;
->>>>>>> cf07ecaa18db7660dbee0c88da3132ed334b63b5
    color: #01408F;
    background-color: #FDEECB;
    button{
