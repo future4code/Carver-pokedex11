@@ -4,6 +4,7 @@ import { MainContainer, HeaderHome, Card, CardImage, CardButtons, AreaCard, Styl
 import { MdCatchingPokemon } from 'react-icons/md'
 import { ImInfo } from 'react-icons/im'
 import { useHistory } from "react-router-dom";
+
 import GlobalStateContext from "../../context/GlobalContext/GlobalStateContext";
 
 
@@ -14,10 +15,10 @@ const HomePage = () => {
 
 
 
-    const addPoke = (name, photo) => {
+    const addPoke = (name, photo, isPokedex) => {
         const indexPoke = detaisPokemons.findIndex((pokes) => { return pokes.name === name })
         detaisPokemons[indexPoke].isPokedex = true
-        const newPokedex = [...poke, { name, photo }]
+        const newPokedex = [...poke, { name, photo,isPokedex:true }]
         setPoke(newPokedex)
 
     }
@@ -35,7 +36,7 @@ const HomePage = () => {
                         <StyledButton2 onClick={() => addPoke(res.name, res.sprites.front_default)} >
                             < MdCatchingPokemon size="2.5em" />
                         </StyledButton2>
-                        <StyledButton1 onClick={() => goToPokemonDetails(history, res.name)} >
+                        <StyledButton1 onClick={() => goToPokemonDetails(history, res.name, res.isPokedex)} >
                             < ImInfo size="2.2em" />
                         </StyledButton1>
                     </CardButtons >

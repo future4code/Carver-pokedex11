@@ -8,11 +8,21 @@ import GlobalStateContext from "../../context/GlobalContext/GlobalStateContext";
 import { useContext } from "react/cjs/react.development";
 
 const Pokedex = () => {
-  const [detais, poke] = useContext(GlobalStateContext)
+  const [detais, poke,setPoke] = useContext(GlobalStateContext)
   const history = useHistory()
 
-  const pokedex = poke && poke.map((pokes) => {
+  const removePoke = (name) => {
+    const indexPoke = detais.findIndex((pokes) => { return pokes.name === name })
+    detais[indexPoke].isPokedex = false
+    const indexPokedex = poke.findIndex((pokes) => { return pokes.name === name })
+    const remove=poke.splice(indexPokedex,1)
+    const copie=[...poke]
+    setPoke(copie)
+}
 
+  const pokedex = poke.map((pokes) => {
+  
+   if(pokes.isPokedex){
     return (
       <Card key={pokes.name}>
         <CardImage>
@@ -20,11 +30,12 @@ const Pokedex = () => {
           <p>{pokes.name}</p>
         </CardImage>
         <CardButtons>
-          <StyledButton2><TiDeleteOutline size="2.8em" /> </StyledButton2>
+          <StyledButton2 onClick={()=>removePoke(pokes.name,pokes.isPokedex)}><TiDeleteOutline size="2.8em" /> </StyledButton2>
           <StyledButton1><ImInfo size="2.3em" /></StyledButton1>
         </CardButtons>
       </Card>
     )
+   }
   })
   return (
     <MainContainer >
