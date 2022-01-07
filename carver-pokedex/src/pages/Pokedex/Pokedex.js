@@ -15,7 +15,7 @@ const Pokedex = () => {
     const indexPoke = detais.findIndex((pokes) => { return pokes.name === name })
     detais[indexPoke].isPokedex = false
     const indexPokedex = poke.findIndex((pokes) => { return pokes.name === name })
-    const remove=poke.splice(indexPokedex,1)
+    poke.splice(indexPokedex,1)
     const copie=[...poke]
     setPoke(copie)
 }
