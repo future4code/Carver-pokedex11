@@ -4,6 +4,7 @@ import {TiDeleteOutline} from "react-icons/ti"
 import {ImInfo} from 'react-icons/im'
 import {goToHomePage} from "../../route/coordinator"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
 const Pokedex = () => {
   const history=useHistory()
   return (
