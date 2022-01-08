@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react"
 import axios from "axios"
-import { MainContainer, HeaderHome, AreaCard, Card, CardImage, CardInfor, StyledButton, ButtonsContainer } from "./Styled"
+import { MainContainer, HeaderHome, AreaCard, Card, CardImage, CardInfor, StyledButton, ButtonsContainer,ButtonGoBack } from "./Styled"
 import { useHistory, useParams } from "react-router-dom"
-import { goToPokedex, goToHomePage } from "../../route/coordinator"
+import { goToPokedex, goBack } from "../../route/coordinator"
 import { BASE_URL } from "../../constants/urls"
 import GlobalStateContext from "../../context/GlobalContext/GlobalStateContext"
 import { MdCatchingPokemon } from "react-icons/md"
@@ -61,9 +61,15 @@ const PokemonDetails = () => {
   return (
     <MainContainer >
       <HeaderHome key={pokemonDetails.name}>
-        <button onClick={() => goToHomePage(history)}>PokeList</button>
+        <ButtonGoBack onClick={() => goBack(history)}>Voltar</ButtonGoBack>
         <h1>{pokemonDetails.name && pokemonDetails.name.capitalize()}</h1>
-        <button onClick={() => goToPokedex(history)}>Ir para Pokedex</button>
+        <ButtonsContainer>
+            {pokemonDetails.isPokedex ? 
+              <StyledButton onClick={() => removePoke(pokemonDetails.name, pokemonDetails.sprites.front_default)}>
+                <TiDeleteOutline size="2.8em" /></StyledButton> :
+              <StyledButton onClick={() => addPoke(pokemonDetails.name, pokemonDetails.sprites.front_default)}>
+                <MdCatchingPokemon size="2.5em" /></StyledButton>}
+          </ButtonsContainer>
       </HeaderHome>
       {!isLoading ? 
       (<AreaCard>
@@ -97,13 +103,7 @@ const PokemonDetails = () => {
               })}
             </div>
           </CardInfor>
-          <ButtonsContainer>
-            {pokemonDetails.isPokedex ? 
-              <StyledButton onClick={() => removePoke(pokemonDetails.name, pokemonDetails.sprites.front_default)}>
-                <TiDeleteOutline size="2.8em" /></StyledButton> :
-              <StyledButton onClick={() => addPoke(pokemonDetails.name, pokemonDetails.sprites.front_default)}>
-                <MdCatchingPokemon size="2.5em" /></StyledButton>}
-          </ButtonsContainer>
+         
         </Card>
       </AreaCard>
       ) : (

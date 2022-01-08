@@ -14,6 +14,7 @@ const GlobalState = (props) => {
     useEffect(() => {
         axios.get(`${BASE_URL}?offset=20&limit=20`)
             .then((ans) => {
+                 
                 setData(ans.data.results)
             }).catch((err) => {
                 alert("Alguma coisa de errado aconteceu, por favor, tente novamente")
