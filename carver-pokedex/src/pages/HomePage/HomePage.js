@@ -15,12 +15,12 @@ const HomePage = () => {
 
 
 
-    const addPoke = (name, photo, isPokedex) => {
+    const addPoke = (name, photo) => {
         const indexPoke = detaisPokemons.findIndex((pokes) => { return pokes.name === name })
         detaisPokemons[indexPoke].isPokedex = true
-        const newPokedex = [...poke, { name, photo,isPokedex:true }]
+        console.log(detaisPokemons[indexPoke])
+        const newPokedex = [...poke, { name, photo, isPokedex: true }]
         setPoke(newPokedex)
-
     }
 
     const resultPoke = detaisPokemons.map((res) => {
