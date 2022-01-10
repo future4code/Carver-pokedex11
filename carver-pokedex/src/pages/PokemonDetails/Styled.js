@@ -2,17 +2,16 @@ import styled from "styled-components";
 
 
 export const MainContainer = styled.section` 
- body{
-   margin: 0;
-   padding: 0;
- }
-   width: 100vw;
-   height: 100vh;
+
+  font-family: 'Pokemon Hollow'
+  width: 100vw;
+  height: 100vh;
    
    background-color: #FBE0A1;
   
  `
 export const HeaderHome = styled.section`
+
    display: flex;
    align-items: center;
    justify-content: space-evenly;
@@ -24,7 +23,8 @@ export const HeaderHome = styled.section`
 }
  `
 export const ButtonGoBack = styled.div` 
- 
+  font-family: 'Pokemon Hollow'
+  font-weight:700;
   padding: 0.6em 2em;
   border: none;
   outline: none;
@@ -120,9 +120,7 @@ background:#FBC050;
     margin-left: 50px;
 
     border-radius: 50px 50px 50px 50px;
-    img{
-        width: 150px;
-    }
+  
 `
 export const CardInfor = styled.div`
     

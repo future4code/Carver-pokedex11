@@ -8,11 +8,12 @@ export const MainContainer = styled.section`
  }
    max-width: 100vw;
    min-height: 100vh;
-   
+   font-weight:800;
    background-color: #FBE0A1;
 
  `
 export const HeaderHome = styled.section`
+   font-family: 'Pokemon Hollow';
    display: flex;
    align-items: center;
    justify-content: space-evenly;
@@ -21,6 +22,8 @@ export const HeaderHome = styled.section`
    color: #01408F;
    background-color: #FDEECB;
    button{
+   font-family: 'Pokemon Hollow';
+   font-weight:700;
    padding: 0.6em 2em;
    border: none;
    outline: none;

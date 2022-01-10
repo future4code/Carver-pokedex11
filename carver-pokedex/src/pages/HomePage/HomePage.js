@@ -1,19 +1,15 @@
-import React, { useContext, useEffect, useState } from "react"
-import { goToHomePage, goToPokedex, goToPokemonDetails } from '../../route/coordinator'
+import React, { useContext} from "react"
+import { goToPokedex, goToPokemonDetails } from '../../route/coordinator'
 import { MainContainer, HeaderHome, Card, CardImage, CardButtons, AreaCard, StyledButton1, StyledButton2 } from "./Styled";
 import { MdCatchingPokemon } from 'react-icons/md'
 import { ImInfo } from 'react-icons/im'
 import { useHistory } from "react-router-dom";
-
 import GlobalStateContext from "../../context/GlobalContext/GlobalStateContext";
 
 
 const HomePage = () => {
     const history = useHistory()
-
     const [detaisPokemons, poke, setPoke] = useContext(GlobalStateContext)
-
-
 
     const addPoke = (name, photo) => {
         const indexPoke = detaisPokemons.findIndex((pokes) => { return pokes.name === name })
@@ -50,7 +46,7 @@ const HomePage = () => {
         <MainContainer >
             <HeaderHome >
                 Lista de Pokemons
-                <button onClick={() => goToPokedex(history)} > Pokedex </button>
+                <button onClick={() => goToPokedex(history)} ><p>Pokedex</p></button>
             </HeaderHome>
             <AreaCard >
                 {resultPoke}
