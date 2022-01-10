@@ -26,8 +26,8 @@ const Pokedex = () => {
     return (
       <Card key={pokes.name}>
         <CardImage>
-          <img src={pokes.photo} alt={pokes.name} />
-          <p>{pokes.name}</p>
+          <img src={pokes.photo && pokes.photo} alt={pokes.name} />
+          <p>{pokes.name && pokes.name}</p>
         </CardImage>
         <CardButtons>
           <StyledButton2 onClick={()=>removePoke(pokes.name,pokes.isPokedex)}><TiDeleteOutline size="2.8em" /> </StyledButton2>
