@@ -18,14 +18,14 @@ const Pokedex = () => {
     setPoke(copie)
   }
 
-  const pokedex = poke.map((pokes) => {
+  const pokedex = poke && poke.map((pokes) => {
   
    if(pokes.isPokedex){
     return (
       <Card key={pokes.name}>
         <CardImage>
-          <img src={pokes.photo} alt={pokes.name} />
-          <p>{pokes.name}</p>
+          <img src={pokes.photo && pokes.photo} alt={pokes.name} />
+          <p>{pokes.name && pokes.name}</p>
         </CardImage>
         <CardButtons>
           <StyledButton2 onClick={()=>removePoke(pokes.name,pokes.isPokedex)}><TiDeleteOutline size="2.8em" /> </StyledButton2>
