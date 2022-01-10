@@ -21,7 +21,6 @@ const Pokedex = () => {
   }
 
   const pokedex = poke.map((pokes) => {
-
   
    if(pokes.isPokedex){
     return (
@@ -37,7 +36,6 @@ const Pokedex = () => {
       </Card>
     )
    }
-
   })
 
   return (

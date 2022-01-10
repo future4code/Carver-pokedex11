@@ -20,75 +20,78 @@ export const HeaderHome = styled.section`
    height: 10%;
    color: #01408F;
    background-color: #FDEECB;
-   button{
-   padding: 0.6em 2em;
-   border: none;
-   outline: none;
-   color: #01408F;
-   background: #FDEECB;
-   cursor: pointer;
-   position: relative;
-   z-index: 0;
-   border-radius: 10px;
-   ::before{
-      content: "";
-  background: linear-gradient(
-    45deg,
-    #F8FBFF,
-    #EEF7FF,
-    #DCEEFF,
-    #B3DAFF,
-    #83C3FE,
-    #4BA7FE,
-    #0284FE,
-    #026DD6,
-    #01408F
-  );
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  background-size: 400%;
-  z-index: -1;
-  filter: blur(5px);
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
-  animation: glowingbn5 20s linear infinite;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+
+}
+ `
+export const ButtonGoBack = styled.div` 
+ 
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: #01408F;
+  background: #FDEECB;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
   border-radius: 10px;
-   }
-   @keyframes glowingbn5 {
-  0% {
-    background-position: 0 0;
+  ::before{
+     content: "";
+ background: linear-gradient(
+   45deg,
+   #F8FBFF,
+   #EEF7FF,
+   #DCEEFF,
+   #B3DAFF,
+   #83C3FE,
+   #4BA7FE,
+   #0284FE,
+   #026DD6,
+   #01408F
+ );
+ position: absolute;
+ top: -2px;
+ left: -2px;
+ background-size: 400%;
+ z-index: -1;
+ filter: blur(5px);
+ width: calc(100% + 4px);
+ height: calc(100% + 4px);
+ animation: glowingbn5 20s linear infinite;
+ opacity: 0;
+ transition: opacity 0.3s ease-in-out;
+ border-radius: 10px;
   }
-  50% {
-    background-position: 400% 0;
-  }
-  100% {
-    background-position: 0 0;
-  }
+  @keyframes glowingbn5 {
+ 0% {
+   background-position: 0 0;
+ }
+ 50% {
+   background-position: 400% 0;
+ }
+ 100% {
+   background-position: 0 0;
+ }
 }
 :active{
-   color: #000;
+  color: #000;
 }
 :active::after{
-   background: transparent;
+  background: transparent;
 }
 :hover::before{
-   opacity: 1;
+  opacity: 1;
 }
-   ::after{
-   z-index: -1;
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background:  #FDEECB;
-  left: 0;
-  top: 0;
-  border-radius: 10px;
-   }
-}
+  ::after{
+  z-index: -1;
+ content: "";
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ background:  #FDEECB;
+ left: 0;
+ top: 0;
+ border-radius: 10px;
+  }
  `
 export const AreaCard = styled.div` 
   padding-bottom: 12vh;
@@ -137,13 +140,13 @@ export const CardInfor = styled.div`
       margin-top: 15px;
     }
 `
-export const StyledButton=styled.button` 
+export const StyledButton = styled.button` 
 color: #01408F;
-      background-color: #FBC050;
+      background-color:#fdeecb;
   border: none;
    text-align: center;
-
-   height: 3.5vh;
+    width:30px;
+   height: 5.5vh;
   opacity: 1;
   transition: 0.3s;
   border-radius: 0 0 20px 20px;
@@ -166,6 +169,6 @@ export const ButtonsContainer = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: space-around;
-margin: 20px;
+
 align-items: center;
 `
