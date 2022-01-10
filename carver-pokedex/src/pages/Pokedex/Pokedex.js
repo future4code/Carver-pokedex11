@@ -20,7 +20,7 @@ const Pokedex = () => {
     setPoke(copie)
   }
 
-  const pokedex = poke.map((pokes) => {
+  const pokedex = poke && poke.map((pokes) => {
   
    if(pokes.isPokedex){
     return (
